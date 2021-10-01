@@ -54,7 +54,7 @@ public class BookServiceUnitTest {
 	public void setUp() {
 		
 		//given
-	    Book b1 = new Book("serviceTest","g1","description...","author...", "0", "", null, 0);
+	    Book b1 = new Book("serviceTest1","g1","description...","author...", "0", "", null, 0);
 	    Book b2 = new Book("serviceTest2","g2","description...","author...", "0", "", null, 0);
 	    b1.setId((long) 1);
 	    b2.setId((long) 2);
@@ -86,7 +86,7 @@ public class BookServiceUnitTest {
      
         // then
         assertThat(result.size()).isEqualTo(2);
-        assertThat(result.get(0).getTitle()).isEqualTo("serviceTest");
+        assertThat(result.get(0).getTitle()).isEqualTo("serviceTest1");
         assertThat(result.get(1).getTitle()).isEqualTo("serviceTest2");
         
         verify(bookRepository,times(1)).findAll();
@@ -100,7 +100,7 @@ public class BookServiceUnitTest {
      
         // then
         assertTrue(result.isPresent());
-        assertThat(result.get().getTitle()).isEqualTo("serviceTest");
+        assertThat(result.get().getTitle()).isEqualTo("serviceTest1");
         
         verify(bookRepository,times(1)).findById(1L);
     }
