@@ -82,6 +82,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skip>${surefire.skip}</skip>
+					<argLine>-Xmx1024m -XX:MaxPermSize=256m ${env.HARNESS_JAVA_AGENT}</argLine>
 				</configuration>
 			</plugin>
 	        <plugin>
