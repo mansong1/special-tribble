@@ -84,6 +84,18 @@ public class BookControllerUnitTest {
 	    	      .andExpect(jsonPath("$.title", is("serviceTest1")));
     	  
     }
+
+	@Test
+    public void getSecondBookByIdTest() throws Exception {
+     
+    	  mvc.perform(get("/book/2")
+	    	      .contentType(MediaType.APPLICATION_JSON))
+	    	      .andExpect(status().isOk())
+	    	      .andExpect(jsonPath("$.*", hasSize(9)))
+	    	      .andExpect(jsonPath("$.id", is(2)))
+	    	      .andExpect(jsonPath("$.title", is("serviceTest2")));
+    	  
+    }
 	
 	@Test
     public void createBookTest() throws Exception {
@@ -94,6 +106,18 @@ public class BookControllerUnitTest {
 	    	      .andExpect(jsonPath("$.*", hasSize(9)))
 	    	      .andExpect(jsonPath("$.id", is(1)))
 	    	      .andExpect(jsonPath("$.title", is("serviceTest1")));
+    	  
+    }
+
+	@Test
+    public void createSecondBookTest() throws Exception {
+     
+    	  mvc.perform(get("/book/2")
+	    	      .contentType(MediaType.APPLICATION_JSON))
+	    	      .andExpect(status().isOk())
+	    	      .andExpect(jsonPath("$.*", hasSize(9)))
+	    	      .andExpect(jsonPath("$.id", is(2)))
+	    	      .andExpect(jsonPath("$.title", is("serviceTest2")));
     	  
     }
  
