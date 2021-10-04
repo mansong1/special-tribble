@@ -49,5 +49,20 @@ public class BookRepositoryIT {
         // then
         assertThat(found).isEqualTo(b);
     }
+
+    @Test
+    public void FindBookByTitleTest2() {
+        // given
+        Book b = new Book("RepositoryTest","g2","description...","author...", "0", "", null, 0);
+        
+        entityManager.persist(b);
+        entityManager.flush();
+     
+        // when
+        Book found = bookRepository.findByTitle(b.getTitle());
+     
+        // then
+        assertThat(found).isEqualTo(b);
+    }
  
 }

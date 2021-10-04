@@ -134,5 +134,20 @@ public class BookServiceUnitTest {
         
         verify(bookRepository,times(1)).deleteById(any());
     }
+
+	@Test
+	public void updateBookTest() {
+		
+		Book b = this.books.get(0);
+		b.setTitle("updateBookTestInServiceTest");
+		
+		// when
+		bookservice.updateBook(b);
+		
+		// then
+		assertThat(this.books).contains(b);
+		
+		verify(bookRepository,times(1)).save(any());
+	}
  
 }
