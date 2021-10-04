@@ -72,13 +72,4 @@ public class DemoApplicationIT {
 		
 	 }
 
-	 @Test
-	 public void findBookByIdThroughAllLayers() throws Exception {
-		 
-		 mvc.perform(get("/book/1")
-	    	      .contentType(MediaType.APPLICATION_JSON))
-	    	      .andExpect(status().isOk())
-	    	      .andExpect(jsonPath("$.title", is("CreateBookThroughAllLayers")));
-		
-	 }
 }
