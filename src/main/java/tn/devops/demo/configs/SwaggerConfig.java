@@ -14,27 +14,27 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {                                    
+public class SwaggerConfig {
     @Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
           .apiInfo(
         		  new ApiInfo(
-        		  "Bookd app RESTful Web Service documentation", 
+        		  "Bookd app RESTful Web Service documentation",
         		  "This pages documents Books app RESTful Web Service endpoints", "1.0","",
         		  new Contact(
         			         "Martin Ansong",
-        			         "https://github.com/mansong1", 
+        			         "https://github.com/mansong1",
         			         "martin.ansong@protonmail.com"
-        			 ), 
+        			 ),
         		  "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0")
         		  )
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.any())                          
-          .build();                                           
+          .select()
+          .apis(RequestHandlerSelectors.any())
+          .paths(PathSelectors.any())
+          .build();
     }
-    
+
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("My API").version("1.0.0").build();
     }
