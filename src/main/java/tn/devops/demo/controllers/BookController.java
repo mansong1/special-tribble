@@ -25,15 +25,14 @@ import tn.devops.demo.services.IBookService;
 @RestController
 @Api(value="/books",description="Books API",produces ="application/json")
 public class BookController {
-	
+
 	@Autowired
 	private IBookService bookService;
 
-	
 	public BookController() {
 		//init
 	}
-	
+
 	@RequestMapping(path="/books", method=RequestMethod.GET)
 	@ApiOperation(value="list_all_books",response=Book.class)
     @ApiResponses(value={
@@ -43,22 +42,21 @@ public class BookController {
 		List<Book> books = this.bookService.getAllBooks();
 		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(path="/book", method=RequestMethod.POST)
 	public ResponseEntity<Book> createBook (@RequestBody Book book) {
 		this.bookService.createBook(book);
 		return new ResponseEntity<Book>(book, HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(path="/book/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Book> findBookById (@PathVariable("id") long id) {
 		Book result = this.bookService.getBookById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:"+id));
-	
+
 		return new ResponseEntity<Book>(result, HttpStatus.OK);
-		
 	}
-	
+
 	@RequestMapping(path="/book/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Book> updateBook (@PathVariable("id") long id, @RequestBody Book book) {
 		this.bookService.getBookById(id)
@@ -66,9 +64,8 @@ public class BookController {
 		book.setId(id);
 		this.bookService.createBook(book);
 		return new ResponseEntity<Book>(book, HttpStatus.OK);
-		
 	}
-	
+
 	@RequestMapping(path="/book/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteBook (@PathVariable("id") long id) {
 		 try {
@@ -78,7 +75,5 @@ public class BookController {
 		 catch(EmptyResultDataAccessException e) {
 			 return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		 }
-		 
 	}
-	
 }
