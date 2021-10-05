@@ -128,12 +128,15 @@ public class Book implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (obj == this) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Book)) {
 			return false;
+		}
 		Book other = (Book) obj;
 		if (author == null) {
 			if (other.author != null)
