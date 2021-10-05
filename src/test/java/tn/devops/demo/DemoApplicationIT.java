@@ -24,7 +24,7 @@ import tn.devops.demo.entities.Book;
 @RunWith(SpringRunner.class)
 
 /*
- * Because we have a full application context, including web controllers, Spring Data repositories, and data sources, 
+ * Because we have a full application context, including web controllers, Spring Data repositories, and data sources,
  * @SpringBootTest is very convenient for integration tests that go through all layers of the application.
  * It will start up an application context to be used in a test.
  * classes: tell Spring Boot which application class to use to create an application context
@@ -38,20 +38,20 @@ import tn.devops.demo.entities.Book;
 		  locations = "classpath:application.properties")
 */
 
-//The following annotation will add a MockMvc instance to the application context that will be injected to our "mvc" field 
+//The following annotation will add a MockMvc instance to the application context that will be injected to our "mvc" field
 @AutoConfigureMockMvc
 public class DemoApplicationIT {
-	
+
 	 @Autowired
 	 private MockMvc mvc;
-	 
+
 	 @Autowired
 	 private ObjectMapper objectMapper;
-	 
+
 	 @Test
 	 public void createBookThroughAllLayers() throws Exception {
 		 Book b1 = new Book("CreateBookThroughAllLayers","g1","description...","author...", "0", "", null, 0);
-		 
+
 		 mvc.perform(post("/book")
 	            .contentType("application/json")
 	            .content(objectMapper.writeValueAsString(b1)))
@@ -59,17 +59,17 @@ public class DemoApplicationIT {
 	            //to test that result is an object containing 9 members:
 	            .andExpect(jsonPath("$.*", hasSize(9)))
 	    	    .andExpect(jsonPath("$.title", is("CreateBookThroughAllLayers")));
-		 		
-		
+
+
 	 }
-	 
+
 	 @Test
 	 public void findAllBooksThroughAllLayers() throws Exception {
-		 
+
 		 mvc.perform(get("/books")
 	    	      .contentType(MediaType.APPLICATION_JSON))
 	    	      .andExpect(status().isOk());
-		
+
 	 }
 
 }

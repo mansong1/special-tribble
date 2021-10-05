@@ -7,4 +7,3 @@ import tn.devops.demo.entities.Book;
 public interface IBookRepository extends JpaRepository<Book, Long> {
 	public Book findByTitle(String title);
 }
-

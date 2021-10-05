@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Book implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 6893016508187480071L;
 	@Id
@@ -29,7 +29,7 @@ public class Book implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date create_date;
 	private double price;
-	
+
 	public Book() {
 	}
 
@@ -125,7 +125,7 @@ public class Book implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -179,5 +179,5 @@ public class Book implements Serializable {
 			return false;
 		return true;
 	}
-		
+
 }
