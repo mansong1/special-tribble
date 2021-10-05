@@ -104,6 +104,25 @@ public class BookControllerUnitTest {
 	}
 
 	@Test
+	public void getBookByIdNegativeTest() throws Exception {
+
+		mvc.perform(get("/book/-1")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isBadRequest());
+
+	}
+
+	@Test
+	public void getBookByIdZeroTest() throws Exception {
+
+		mvc.perform(get("/book/0")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isBadRequest());
+
+	}
+
+
+	@Test
     public void createBookTest() throws Exception {
 
     	  mvc.perform(get("/book/1")
